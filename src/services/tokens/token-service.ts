@@ -1,6 +1,7 @@
 import { options } from '@config/globals';
 import { CommonResponse, network } from '@services/network';
-import { TokenResponse, CreateTokenArgs } from './interfaces';
+
+import { CreateTokenArgs, TokenResponse } from './interfaces';
 
 export class TokenService {
 	private static url = `${options.BASE_URL}/token`;

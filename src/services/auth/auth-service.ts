@@ -32,6 +32,14 @@ export class AuthService {
 		}
 	}
 
+	static async completeRegistration(
+		nickName: string
+	): Promise<CommonResponse<void>> {
+		return network.post(`${this.url}/api/v1/auth/completeRegistration`, {
+			nickName,
+		});
+	}
+
 	static async logout(): Promise<void> {
 		return network.get(`${this.url}/logout`);
 	}

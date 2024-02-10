@@ -1,12 +1,13 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
+import { withAuth } from '@hocs/with-auth';
 
-export const Router = (): React.ReactElement => {
-	return (
-		<Routes>
-			<Route path="/" element={<>home</>} />
-			<Route path="/my-stat" element={<>my stat</>} />
-			<Route path="/tokens" element={<>tokens</>} />
-		</Routes>
-	);
-};
+import { AUTH_ROUTES, UNAUTH_ROUTES } from './routes';
+
+export const Router = withAuth(({ isAuth }): React.ReactElement | null => {
+	const routes = isAuth ? AUTH_ROUTES : UNAUTH_ROUTES;
+
+	const element = useRoutes(routes);
+
+	return element;
+});

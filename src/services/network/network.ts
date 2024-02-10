@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { options } from '@config/globals';
 import { hasOwnProperty } from '@utils/has-own-property';
+import axios from 'axios';
 
 export const network = axios.create({
 	baseURL: options.BASE_URL,

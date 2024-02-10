@@ -1,2 +1,2 @@
-export * from './token-service';
 export * from './interfaces';
+export * from './token-service';

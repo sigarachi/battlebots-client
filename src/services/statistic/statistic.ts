@@ -1,5 +1,6 @@
 import { options } from '@config/globals';
 import { CommonResponse, network } from '@services/network';
+
 import { GetCurrentStatResponse, GetStatResponse } from './interfaces';
 
 export class Statistic {
