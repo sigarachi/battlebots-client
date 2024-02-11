@@ -17,4 +17,28 @@ export default defineConfig({
 			'@store': `${path.resolve(__dirname, './src/store')}`,
 		},
 	},
+	server: {
+		proxy: {
+			'/crm': {
+				target: 'http://147.45.107.29:8080',
+				changeOrigin: true,
+				secure: false,
+			},
+			'/oauth': {
+				target: 'http://147.45.107.29:8080',
+				changeOrigin: true,
+				secure: false,
+			},
+			'/middleware': {
+				target: 'http://147.45.107.29:8080',
+				changeOrigin: true,
+				secure: false,
+			},
+			'/login': {
+				target: 'http://147.45.107.29:8080',
+				changeOrigin: true,
+				secure: false,
+			},
+		},
+	},
 });

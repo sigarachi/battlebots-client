@@ -1,5 +1,6 @@
 export interface FlexProps {
-	children: React.ReactElement | string;
+	children: React.ReactNode;
+	classNames?: string;
 	mg?: string;
 	pd?: string;
 	justify?: string;
@@ -7,4 +8,6 @@ export interface FlexProps {
 	width?: string;
 	height?: string;
 	direction?: string;
+	background?: string;
+	gap?: string;
 }

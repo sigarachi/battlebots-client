@@ -2,7 +2,7 @@ import { options } from '@config/globals';
 import { CommonResponse, network } from '@services/network';
 
 export class AuthService {
-	private static url = `${options.BASE_URL}/crm`;
+	private static url = `/crm`;
 
 	static async authYandex(): Promise<void> {
 		return network.get(`${this.url}/view/redirect`);
@@ -10,8 +10,8 @@ export class AuthService {
 
 	static async auth(): Promise<CommonResponse<void> | undefined> {
 		try {
-			const { data } = await network.post<CommonResponse<void>>(
-				`${this.url}/api/v1/auth`
+			const { data } = await network.get<CommonResponse<void>>(
+				`${this.url}/view/redirect`
 			);
 
 			return data;

@@ -12,6 +12,7 @@ export interface RoundInfo {
 	drawCount: number;
 	leftCount: number;
 	isPlay: boolean;
+	isDownBotWin: boolean;
 }
 
 export interface GetCurrentStatResponse {
@@ -27,7 +28,7 @@ export type BotPlacement = {
 export interface StatInfo {
 	id: string;
 	botTitleByPosition: BotPlacement;
-	roundInfo: Array<RoundInfo>;
+	result: Array<RoundInfo>;
 }
 
 export type GetStatResponse = Array<StatInfo>;

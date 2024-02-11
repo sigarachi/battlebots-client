@@ -1,10 +1,9 @@
-import { options } from '@config/globals';
 import { CommonResponse, network } from '@services/network';
 
 import { GetCurrentStatResponse, GetStatResponse } from './interfaces';
 
 export class Statistic {
-	private static url = `${options.BASE_URL}`;
+	private static url = `/middleware/api/v1`;
 
 	static async getCurrentStat(): Promise<
 		CommonResponse<GetCurrentStatResponse>
