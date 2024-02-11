@@ -17,6 +17,7 @@ export default defineConfig({
 			'@store': `${path.resolve(__dirname, './src/store')}`,
 		},
 	},
+	base: '',
 	server: {
 		proxy: {
 			'/crm': {
