@@ -1,4 +1,3 @@
-import { options } from '@config/globals';
 import { CommonResponse, network } from '@services/network';
 
 import { User } from './interfaces';
