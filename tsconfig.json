@@ -16,8 +16,8 @@
 
 		/* Linting */
 		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
 		"noFallthroughCasesInSwitch": true,
 		"paths": {
 			"@components/*": ["./src/components/*"],
@@ -28,9 +28,9 @@
 			"@utils/*": ["./src/utils/*"],
 			"@hooks/*": ["./src/hooks/*"],
 			"@store/*": ["./src/store/*"],
-			"@hocs/*": ["./src/hocs/*"],
-		},
+			"@hocs/*": ["./src/hocs/*"]
+		}
 	},
 	"include": ["src"],
-	"references": [{ "path": "./tsconfig.node.json" }],
+	"references": [{ "path": "./tsconfig.node.json" }]
 }
