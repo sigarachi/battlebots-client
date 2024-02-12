@@ -15,7 +15,7 @@ export const CompleteRegistration = (): React.ReactElement => {
 	const handleComplete = async () => {
 		try {
 			await AuthService.completeRegistration(nickName);
-			dispatch(apiSlice.util.invalidateTags(['USER']));
+			window.location.reload();
 		} catch (e) {
 			if ((e as Error).message === '3000') navigate('/');
 		}
