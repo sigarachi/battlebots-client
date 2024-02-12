@@ -13,13 +13,14 @@ import {
 	Snippet,
 	useDisclosure,
 } from '@nextui-org/react';
-import { TokenType } from '@services/tokens';
-import { useCreateTokenMutation, useGetTokensQuery } from '@store/api';
+import { TokenService, TokenType } from '@services/tokens';
+import { apiSlice, useGetTokensQuery } from '@store/api';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export const Token = (): React.ReactElement => {
 	const { data, isLoading, isError } = useGetTokensQuery();
-	const [createToken] = useCreateTokenMutation();
+	const dispatch = useDispatch();
 
 	const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
 
@@ -39,7 +40,11 @@ export const Token = (): React.ReactElement => {
 	const handleSubmit = async () => {
 		try {
 			setError('');
-			await createToken({ title: tokenTitle, typeToken: tokenType });
+			await TokenService.createToken({
+				title: tokenTitle,
+				typeToken: tokenType,
+			});
+			dispatch(apiSlice.util.invalidateTags(['TOKENS']));
 			onClose();
 		} catch {
 			setError('Что то пошло не так');
