@@ -7,6 +7,7 @@ import { Navigation } from '@components/navigation/navigation';
 export const Layout: FC<LayoutProps> = ({
 	children,
 	classNames,
+	blockNavigation = false,
 }): React.ReactElement => {
 	return (
 		<LayoutWrapper className={classNames}>
@@ -14,7 +15,7 @@ export const Layout: FC<LayoutProps> = ({
 				height="100%"
 				direction="column"
 				classNames="bg-white p-5 rounded-xl shadow-xl">
-				<Navigation />
+				{!blockNavigation && <Navigation />}
 				{children}
 			</Flex>
 		</LayoutWrapper>

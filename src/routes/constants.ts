@@ -4,4 +4,5 @@ export const paths = {
 	tokens: '/tokens',
 	statistic: '/statistic',
 	blocked: '/blocked',
+	completeRegistration: '/register',
 };
