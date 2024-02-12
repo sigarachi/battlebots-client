@@ -1,17 +1,21 @@
 import { Flex } from '@components/flex';
 import { Button, Input } from '@nextui-org/react';
 import { AuthService } from '@services/auth';
+import { apiSlice } from '@store/api';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export const CompleteRegistration = (): React.ReactElement => {
 	const [nickName, setNickName] = useState<string>('');
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const handleComplete = async () => {
 		try {
 			await AuthService.completeRegistration(nickName);
+			dispatch(apiSlice.util.invalidateTags(['USER']));
 		} catch (e) {
 			if ((e as Error).message === '3000') navigate('/');
 		}

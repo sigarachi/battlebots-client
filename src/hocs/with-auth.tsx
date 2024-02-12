@@ -20,20 +20,21 @@ export const withAuth = <T,>(
 
 		const user = useUser();
 
-		const { isUninitialized } = info;
+		const { isUninitialized, error } = info;
 
 		useEffect(() => {
-			if (info.error) {
-				if (info.error === '3001') {
+			console.log(error);
+			if (!user && error) {
+				if (error === '3001') {
 					navigate('/register');
 				}
 
-				if (info.error === '3002') {
+				if (error === '3002') {
 					navigate('/blocked');
 				}
 			}
-			if (!info.error || !user || !isUninitialized) fetch();
-		}, [info.error]);
+			if (!error || !user || !isUninitialized) fetch();
+		}, [error]);
 
 		return <WrappedComponent {...props} isAuth={!!user} user={user} />;
 	};

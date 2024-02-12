@@ -1,5 +1,4 @@
 import {
-	Link,
 	Navbar,
 	NavbarBrand,
 	NavbarContent,
@@ -11,6 +10,7 @@ import {
 import React from 'react';
 import { menuItems } from './constants';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Navigation = (): React.ReactElement => {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -37,11 +37,7 @@ export const Navigation = (): React.ReactElement => {
 							isActive={
 								menuItems[key as keyof typeof menuItems] === location.pathname
 							}>
-							<Link
-								color="foreground"
-								href={menuItems[key as keyof typeof menuItems]}>
-								{key}
-							</Link>
+							<Link to={menuItems[key as keyof typeof menuItems]}>{key}</Link>
 						</NavbarItem>
 					);
 				})}
@@ -49,12 +45,7 @@ export const Navigation = (): React.ReactElement => {
 			<NavbarMenu>
 				{Object.keys(menuItems).map((key: string) => (
 					<NavbarMenuItem key={`${key}`}>
-						<Link
-							className="w-full"
-							href={menuItems[key as keyof typeof menuItems]}
-							size="lg">
-							{key}
-						</Link>
+						<Link to={menuItems[key as keyof typeof menuItems]}>{key}</Link>
 					</NavbarMenuItem>
 				))}
 			</NavbarMenu>
