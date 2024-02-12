@@ -4,6 +4,7 @@ import { User } from '@services/user';
 import { useLazyGetUserQuery } from '@store/api/user';
 
 import { useUser } from '../hooks';
+import { useNavigate } from 'react-router-dom';
 
 type WrappedComponentProps<T> = {
 	isAuth: boolean;
@@ -14,14 +15,28 @@ export const withAuth = <T,>(
 	WrappedComponent: React.ComponentType<WrappedComponentProps<T>>
 ) => {
 	const WrappedComponentContainer = (props: T) => {
-		const [fetch, info] = useLazyGetUserQuery();
+		const [fetch, info] = useLazyGetUserQuery({
+			refetchOnReconnect: false,
+			refetchOnFocus: false,
+			pollingInterval: 100000000,
+		});
+		const navigate = useNavigate();
 
 		const user = useUser();
 
 		const { isUninitialized } = info;
 
 		useEffect(() => {
-			if (!user || !isUninitialized) fetch();
+			if (info.error) {
+				if ((info.error as Error).message === '3001') {
+					navigate('/register');
+				}
+
+				if ((info.error as Error).message === '3002') {
+					navigate('/blocked');
+				}
+			}
+			if (!info.error || !user || !isUninitialized) fetch();
 		}, []);
 
 		return <WrappedComponent {...props} isAuth={!!user} user={user} />;

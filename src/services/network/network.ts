@@ -15,12 +15,6 @@ network.interceptors.response.use(function (response) {
 		hasOwnProperty(response.data, 'statusCode') &&
 		response.data.statusCode !== 0
 	) {
-		if (response.data.statusCode === 3001) {
-			window.location.href = '/register';
-		}
-		if (response.data.statusCode === 3002) {
-			window.location.href = '/blocked';
-		}
 		throw new Error(response.data.statusCode);
 	}
 

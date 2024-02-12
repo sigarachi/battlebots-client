@@ -6,8 +6,6 @@ import { Token } from '@pages/token';
 import { paths } from './constants';
 import { RouteElement } from './interfaces';
 import { Layout } from '@components/layout';
-import { CompleteRegistration } from '@pages/complete-registration';
-import { Blocked } from '@pages/blocked';
 
 export const AUTH_ROUTES: Array<RouteElement> = [
 	{
@@ -31,22 +29,6 @@ export const AUTH_ROUTES: Array<RouteElement> = [
 		element: (
 			<Layout>
 				<Token />
-			</Layout>
-		),
-	},
-	{
-		path: paths.completeRegistration,
-		element: (
-			<Layout blockNavigation>
-				<CompleteRegistration />
-			</Layout>
-		),
-	},
-	{
-		path: paths.blocked,
-		element: (
-			<Layout blockNavigation>
-				<Blocked />
 			</Layout>
 		),
 	},
