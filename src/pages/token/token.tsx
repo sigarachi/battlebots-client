@@ -21,10 +21,12 @@ export const Token = (): React.ReactElement => {
 	const { data, isLoading, isError } = useGetTokensQuery();
 	const [createToken] = useCreateTokenMutation();
 
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
 
 	const [tokenTitle, setTokenTitle] = useState<string>('');
 	const [tokenType, setTokenType] = useState<TokenType>(TokenType.DEV);
+
+	const [error, setError] = useState<string>('');
 
 	if (isLoading) {
 		return <CircularProgress aria-label="Loading..." />;
@@ -35,7 +37,13 @@ export const Token = (): React.ReactElement => {
 	}
 
 	const handleSubmit = async () => {
-		await createToken({ title: tokenTitle, typeToken: tokenType });
+		try {
+			setError('');
+			await createToken({ title: tokenTitle, typeToken: tokenType });
+			onClose();
+		} catch {
+			setError('Что то пошло не так');
+		}
 	};
 
 	return (
@@ -63,6 +71,7 @@ export const Token = (): React.ReactElement => {
 								Добавить новый токен
 							</ModalHeader>
 							<ModalBody>
+								{error.length && <p>{error}</p>}
 								<Select
 									label="Тип токена"
 									onChange={(e) =>
