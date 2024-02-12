@@ -71,7 +71,7 @@ export const Token = (): React.ReactElement => {
 								Добавить новый токен
 							</ModalHeader>
 							<ModalBody>
-								{error.length && <p>{error}</p>}
+								{!!error.length && <p>{error}</p>}
 								<Select
 									label="Тип токена"
 									onChange={(e) =>
