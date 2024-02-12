@@ -1,6 +1,6 @@
 export enum TokenType {
-	'DEV',
-	'PROD',
+	'DEV' = 'DEV',
+	'PROD' = 'PROD',
 }
 
 export interface Token {

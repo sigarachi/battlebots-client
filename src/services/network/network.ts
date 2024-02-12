@@ -5,10 +5,7 @@ import axios from 'axios';
 export const network = axios.create({
 	baseURL: options.BASE_URL,
 	headers: {
-		'Content-type': 'application/json',
-		'Access-Control-Allow-Origin': '*',
-		'Access-Control-Expose-Headers': 'location',
-		'X-Requested-With': 'XMLHttpRequest',
+		'Content-Type': 'application/json',
 	},
 	withCredentials: true,
 });
