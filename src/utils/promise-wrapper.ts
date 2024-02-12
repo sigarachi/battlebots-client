@@ -16,7 +16,7 @@ export const apiSlicePromiseWrapper = async <F extends () => Promise<O>, O>(
 	} catch (e) {
 		const error = e as AxiosError;
 
-		const errorMassage = `Ошибка: ${error?.message || 'неизвестная'}. `;
+		const errorMassage = `${error?.message}`;
 
 		const errorInfo = error?.response?.data;
 

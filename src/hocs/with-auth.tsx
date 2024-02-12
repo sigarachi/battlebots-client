@@ -15,11 +15,7 @@ export const withAuth = <T,>(
 	WrappedComponent: React.ComponentType<WrappedComponentProps<T>>
 ) => {
 	const WrappedComponentContainer = (props: T) => {
-		const [fetch, info] = useLazyGetUserQuery({
-			refetchOnReconnect: false,
-			refetchOnFocus: false,
-			pollingInterval: 100000000,
-		});
+		const [fetch, info] = useLazyGetUserQuery();
 		const navigate = useNavigate();
 
 		const user = useUser();
@@ -28,16 +24,16 @@ export const withAuth = <T,>(
 
 		useEffect(() => {
 			if (info.error) {
-				if ((info.error as Error).message === '3001') {
+				if (info.error === '3001') {
 					navigate('/register');
 				}
 
-				if ((info.error as Error).message === '3002') {
+				if (info.error === '3002') {
 					navigate('/blocked');
 				}
 			}
 			if (!info.error || !user || !isUninitialized) fetch();
-		}, []);
+		}, [info.error]);
 
 		return <WrappedComponent {...props} isAuth={!!user} user={user} />;
 	};
